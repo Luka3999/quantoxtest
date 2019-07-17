@@ -21,35 +21,43 @@
         <img id="activity1" src="baseline-timer-24px (1).svg">
         <h2>Activity</h2>
         <h5>Average</h5>
+        <p id="totaltime"></p>
     </div>
  
     <div id="steps">
         <img id="steps1" src="baseline-directions_run-24px (1).svg"> 
         <h2>Steps</h6>
-        <h5>Total</h5>  
+        <h5>Total</h5> 
+        <p id="totalsteps"></p> 
     </div>
 
     <div id="calories">
         <img id="calories1" src="baseline-whatshot-24px.svg">
         <h2>Calories</h2>
         <h5>Total Burned</h5>
-        <p id=" demo"></p>
+        <p id="totalcalories"></p>
     </div>
    
 </div>
 <script>
         (function() {
             var bHolder = document.getElementById("buttonHolder");
-            
+            var totalsteps = document.getElementById("totalsteps");
+            var totalcalories = document.getElementById("totalcalories");
+            var totaltime = document.getElementById("totaltime");
             fetchData('https://api.myjson.com/bins/1gwnal')
             .then(function(resp){
-                serverResponse = groupDates(JSON.parse(resp));
+               var serverResponse = groupDates(JSON.parse(resp));
                 bHolder.innerHTML = renderButtons(serverResponse);
+                var tsteps = sumAllSteps(serverResponse);
+                totalsteps.innerHTML = tsteps;
+                totalcalories.innerHTML = calculateCalories(tsteps);
+                totaltime.innerHTML = renderTime(tsteps /serverResponse.length);
             })
             .catch(reason => console.log(reason))
             
         })();
-     
+
  </script> 
 </body>
 </html>

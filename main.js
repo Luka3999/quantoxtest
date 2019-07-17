@@ -3,11 +3,25 @@ var httpReq = new XMLHttpRequest();
 
 
 function calculateCalories(steps){
-   return steps * 0.05;
+   return Math.round(steps * 0.05,2);
+
 }
 
 function calculateDistance(steps){
     return steps * 0.762
+}
+
+function renderTime(steps){
+   var totaltime = calculateTime(steps);
+   var days = Math.floor(totaltime/86400);
+   totaltime -= days * 86400;
+   var hours = Math.floor(totaltime/3600) % 24;
+   totaltime -= hours * 3600;
+   var minutes = Math.floor (totaltime/60) % 60;
+   totaltime -= minutes * 60;
+   
+   return  hours + " h " + minutes + " min ";
+
 }
 
 function calculateTime(steps){
@@ -26,7 +40,15 @@ function findInArr(day, arr){
    return -1;
 }
 
+function sumAllSteps(arr){
+   var steps = 0;
+   for(var i=0; i < arr.length;i++) {
+    steps += arr[i].steps ; 
+   }
+   return steps;
+   
 
+}
 
 function groupDates(data){
    var groupedDailyData = new Array();
