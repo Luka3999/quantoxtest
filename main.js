@@ -1,6 +1,5 @@
-var serverReponse = new Array();
-
-
+var serverResponse = new Array();
+var httpReq = new XMLHttpRequest();
 
 
 function calculateCalories(steps){
@@ -21,20 +20,29 @@ function getTimestampDay(timestamp){
 }
 
 function findInArr(day, arr){
-   return arr.find(function(o){
-      o.day = day;
-   });
-    
+   for(var i = 0; i < arr.length;i++){
+       if (arr[i].day == day) return i;
+   }
+   return -1;
 }
+
+
+
 function groupDates(data){
    var groupedDailyData = new Array();
    for(var i = 0; i < data.length;i++){
-     var newRec = {"steps": data[i].steps, "day": getTimestampDay(data[i].timestamp)}
-     var index = findInArr(newRec.day,groupedDailyData);
-     var day = getTimestampDay(data[i].timestamp);
-     if(index > 0){
-        var x = {"steps": data[i].steps + groupedDailyData[index].steps, "day": newRec.day};
-        groupedDailyData[index] = x;
+     var newRec = 
+        {"steps": data[i].steps,
+         "day": getTimestampDay(data[i].timestamp),
+         "ts" :data[i].timestamp
+       }
+     var index = findInArr(newRec.day, groupedDailyData);
+     if(index > -1){
+        groupedDailyData[index] =
+         {"steps": data[i].steps + groupedDailyData[index].steps,
+           "day": newRec.day,
+           "ts": newRec.ts
+         };
      }else{
          groupedDailyData.push(newRec);
      }
@@ -44,13 +52,34 @@ function groupDates(data){
    return groupedDailyData;
 }
 
-function loadData() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          console.log(groupDates(JSON.parse(this.responseText)));
-      }
-    };
-    xhttp.open("GET", "https://api.myjson.com/bins/1gwnal", true);
-    xhttp.send();
+function createButton(ts) {
+   var d = new Date(ts).toLocaleString('en-us', {  weekday: 'short' });
+   var n = getTimestampDay(ts);
+   return "<button class='button1'>"+ n + " " + d + "</button>";
+}
+
+function renderButtons(serverResponse){
+   var buttons = [];
+   for(var i = 0;i < serverResponse.length;i++){
+      buttons.push(createButton(serverResponse[i].ts));
+   }
+   return buttons.join("");
+}
+var fetchData = function(url) {
+  return new Promise((resolve, reject) => {
+  httpReq.open('GET', url)
+
+  httpReq.onload = () => {
+    if (httpReq.status === 200) {
+      resolve(httpReq.responseText)
+    } else {
+      reject(Error(httpReq.status))
+    }
   }
+
+  httpReq.send()
+  })
+}
+
+
+
