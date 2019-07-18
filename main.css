@@ -4,7 +4,7 @@ body {
 }
 
 
-.header {
+#header {
     background-color: #ffffff;
     padding: 10px;
     color: #34c7a0;
@@ -190,3 +190,29 @@ h3 {
 
  }
 
+p {
+  color: #FFFFFF;
+  font-size: 38px;
+}
+
+#buttonholder {
+  margin-left: 21px;
+}
+
+#pozadina {
+  margin-left: 2px;
+}
+
+#totaltime {
+  text-align: center;
+}
+
+#totalsteps {
+  text-align: right;
+  margin-top: -20%;
+}
+
+#totalcalories {
+  text-align: right;
+  margin-top: -20%;
+}

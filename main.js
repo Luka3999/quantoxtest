@@ -77,7 +77,7 @@ function groupDates(data){
 function createButton(ts) {
    var d = new Date(ts).toLocaleString('en-us', {  weekday: 'short' });
    var n = getTimestampDay(ts);
-   return "<button class='button1'>"+ n + " " + d + "</button>";
+   return "<button class='button1' onClick=showDetais("+n+")>"+ n + " " + d + "</button>";
 }
 
 function renderButtons(serverResponse){
@@ -103,5 +103,12 @@ var fetchData = function(url) {
   })
 }
 
+function showDetais(day){
+   var x=document.getElementById('header');
+   x.style.display = 'none';
+
+   var a=document.getElementById('overview');
+   a.style.display = 'none';
+}
 
 
