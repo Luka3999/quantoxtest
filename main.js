@@ -1,10 +1,9 @@
-var serverResponse = new Array();
+var serverResponse = [];
 var httpReq = new XMLHttpRequest();
 
 
 function calculateCalories(steps){
    return Math.round(steps * 0.05,2);
-
 }
 
 function calculateDistance(steps){
@@ -21,15 +20,15 @@ function renderTime(steps){
    totaltime -= minutes * 60;
    
    return  hours + " h " + minutes + " min ";
-
 }
 
 function calculateTime(steps){
-  return steps * 0.5
+  return steps * 0.5    
 }
 
 function getTimestampDay(timestamp){
    var d = new Date(timestamp);
+   new Date(timestamp).toLocaleString('default', { month: 'long' });
    return d.getDay();
 }
 
@@ -46,8 +45,6 @@ function sumAllSteps(arr){
     steps += arr[i].steps ; 
    }
    return steps;
-   
-
 }
 
 function groupDates(data){
@@ -87,6 +84,38 @@ function renderButtons(serverResponse){
    }
    return buttons.join("");
 }
+function showHide(element, state){
+   var a = document.getElementById(element);
+   a.style.display = state;
+}
+
+function goBack(){
+   showHide('header', 'block');
+   showHide('overview', 'block');
+   showHide('header2', 'none');
+   showHide('overview2', 'none');
+}
+
+function showDetais(day){
+   showHide('header', 'none');
+   showHide('overview', 'none');
+   showHide('header2', 'block');
+   showHide('overview2', 'block');
+   var currentDayData = serverResponse.find(function(item){
+      return item.day == day;
+   }); 
+
+   var detailCalories = document.getElementById('detailCalories');
+   detailCalories.innerHTML = parseFloat(calculateCalories(currentDayData.steps)).toFixed(2) +"cal "; 
+   console.log(currentDayData.ts);
+   var detailDistance = document.getElementById('detailDistance');
+   detailDistance.innerHTML = parseFloat(calculateDistance(currentDayData.steps) / 1000).toFixed(2) + "km "; 
+   var detailTime = document.getElementById('detailTime');
+   detailTime.innerHTML = parseFloat(renderTime(currentDayData.steps)) + "hour";  
+   var newday = document.getElementById('newday');
+   newday.innerHTML = parseFloat (getTimestampDay(currentDayData.steps));
+}
+
 var fetchData = function(url) {
   return new Promise((resolve, reject) => {
   httpReq.open('GET', url)
@@ -103,12 +132,5 @@ var fetchData = function(url) {
   })
 }
 
-function showDetais(day){
-   var x=document.getElementById('header');
-   x.style.display = 'none';
-
-   var a=document.getElementById('overview');
-   a.style.display = 'none';
-}
 
 

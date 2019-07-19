@@ -6,42 +6,57 @@
 
 <body> 
     
-<div id="pozadina"> 
+<div id="home"> 
 
     <div id="header">
             <h1>Welcome!</h1>
             <h3>Overview of your activity</h3>
-          </div>
-    
+    </div>
+
+    <div id="header2">
+        <a class="backButton" href="#" onClick="goBack()" ><img src="strelica-levo.svg"></a>
+        <p id="newday"></p>
     </div>
 
     <div id="buttonHolder"></div>
  
-  <div id="overview">
+    <div id="overview">
 
-    <div id="activity">
-        <img id="activity1" src="baseline-timer-24px (1).svg">
-        <h2>Activity</h2>
-        <h5>Average</h5>
-        <p id="totaltime"></p>
-    </div>
+        <div id="activity">
+            <img id="activity1" src="baseline-timer-24px (1).svg">
+            <h2>Activity</h2>
+            <h5>Average</h5>
+            <p id="totaltime"></p>
+        </div>
  
-    <div id="steps">
-        <img id="steps1" src="baseline-directions_run-24px (1).svg"> 
-        <h2>Steps</h6>
-        <h5>Total</h5> 
-        <p id="totalsteps"></p> 
+        <div id="steps">
+            <img id="steps1" src="baseline-directions_run-24px (1).svg"> 
+            <h2>Steps</h6>
+            <h5>Total</h5> 
+            <p id="totalsteps"></p> 
+        </div>
+
+        <div id="calories">
+            <img id="calories1" src="baseline-whatshot-24px.svg">
+            <h2>Calories</h2>
+            <h5>Total Burned</h5>
+            <p id="totalcalories"></p>
+        </div>
+
+    </div> 
+  
+    <div id="overview2"> 
+            <svg height="250" width="250">
+             <circle cx="140" cy="150" r="90" stroke="#00B6A3" stroke-width="7" fill="#ffffff"> 
+             <img id="steps2" src="baseline-directions_run-24px (1).svg">        
+             </circle>
+            </svg>
+           <p3><b>Very good</b></p3>
+           <p4><b>Keep going!</b></p4> 
+            <p4 id="detailCalories"></p4>
+            <p4 id="detailDistance"></p4>
+            <p4 id="detailTime"></p4>
     </div>
-
-    <div id="calories">
-        <img id="calories1" src="baseline-whatshot-24px.svg">
-        <h2>Calories</h2>
-        <h5>Total Burned</h5>
-        <p id="totalcalories"></p>
-    </div>
-
-  </div> 
-
 </div>
 <script>
         (function() {
@@ -51,7 +66,7 @@
             var totaltime = document.getElementById("totaltime");
             fetchData('https://api.myjson.com/bins/1gwnal')
             .then(function(resp){
-               var serverResponse = groupDates(JSON.parse(resp));
+                serverResponse = groupDates(JSON.parse(resp));
                 bHolder.innerHTML = renderButtons(serverResponse);
                 var tsteps = sumAllSteps(serverResponse);
                 totalsteps.innerHTML = tsteps;
@@ -62,6 +77,6 @@
             
         })();
 
- </script> 
+</script> 
 </body>
 </html>

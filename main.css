@@ -12,7 +12,6 @@ body {
     padding: 20px; 
     width: 290px;
     height: 91px;  
-    /* margin:auto; */
     margin-top: 7%;
     margin-left: 1%;
 }
@@ -40,7 +39,7 @@ h3 {
 .button1 { 
     background-color:#34C7AF ;
     border: none;
-    color: white;
+    color: #ffffff;
     padding: 17px;
     margin: 4px 2px;
     border-radius: 23px;
@@ -58,7 +57,7 @@ h3 {
 .button2 {
     background-color:#34C7AF;
     border: none;
-    color: white;
+    color: #ffffff;
     padding: 16px;
     margin: 4px 2px;
     border-radius: 23px;
@@ -76,7 +75,7 @@ h3 {
 .button3 {
     background-color: #34C7AF;
     border: none;
-    color: white;
+    color:#ffffff;
     padding: 16px;
     margin: 4px 2px;
     border-radius: 23px;
@@ -94,7 +93,7 @@ h3 {
 .button4 {
     background-color: #34C7AF;
     border: none;
-    color: white;
+    color: #ffffff;
     padding: 16px;
     margin: 4px 2px;
     border-radius: 23px;
@@ -112,7 +111,7 @@ h3 {
 .button5 {
     background-color:#34C7AF;
     border: none;
-    color: white;
+    color: #ffffff;
     padding: 16px;
     margin: 4px 2px;
     border-radius: 23px;
@@ -216,3 +215,79 @@ p {
   text-align: right;
   margin-top: -20%;
 }
+
+#header2 {
+  background-color:  #34C7AF;;
+  padding: 10px;
+  color: #ffffff;
+  border-radius: 25px;
+  padding: 20px; 
+  width: 290px;
+  height: 91px;  
+  margin-top: 7%;
+  margin-left: 1%;
+  display: none;
+}
+
+#overview2 {
+  background-color: #ffffff;
+    padding: 10px;
+    color: #34c7a0;
+    border-radius: 25px;
+    padding: 20px; 
+    width: 290px;
+    height: 555px;  
+    margin-top: 1%;
+    margin-left: 1%;  
+    display: none;  
+}
+
+#steps2 {
+  background-color: #00B6A3;
+  margin-left: -43%;
+  border-radius: 17px;
+  padding: 1%;
+}
+
+p3 {
+  text-align: center;
+  font-size: 20px;
+  color: #151C1F;
+  padding: 33%;
+  font-family: Helvetica ;
+
+}
+
+
+p4 {
+  text-align: center;
+  font-size: 40px;
+  color: #151C1F;
+  margin-left: 16%;
+  font-family: Helvetica ;
+}
+
+ #newday {
+   color:#FFFFFF;
+   font-size: 34px;
+   margin-top:-13%;
+   margin-left: 30%;
+ }
+
+ #detailCalories {
+  color: #00B6A3;
+  font-size: 40px;
+ }
+
+
+
+ #detailDistance{
+  color: #00B6A3;
+  font-size: 40px;
+ }
+
+ #detailTime{
+  color: #00B6A3;
+  font-size: 40px;
+ }
+
